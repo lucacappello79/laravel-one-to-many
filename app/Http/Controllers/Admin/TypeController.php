@@ -48,7 +48,6 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
     }
 
     /**
