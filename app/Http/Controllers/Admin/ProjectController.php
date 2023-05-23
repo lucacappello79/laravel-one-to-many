@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,7 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -113,6 +115,7 @@ class ProjectController extends Controller
             'type' => 'required|max:100',
             'slug' => 'required|max:120',
             'content' => 'required|min:40',
+            'type_id' => 'nullable|exists:types,id'
 
         ], [
 
@@ -126,6 +129,7 @@ class ProjectController extends Controller
             'slug.max' => "Lo slug non deve superare :max caratteri",
             'content.required' => "E' richiesta una descrizione",
             'content.max' => 'La descrizione deve avere un minimo di :min caratteri',
+            'type_id.exists' => 'La tipologia deve venire inserita'
 
         ])->validate();
 
