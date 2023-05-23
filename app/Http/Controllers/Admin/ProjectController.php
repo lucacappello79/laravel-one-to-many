@@ -18,6 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        // $projects = Project::orderBy('title', 'ASC')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -129,7 +130,7 @@ class ProjectController extends Controller
             'slug.max' => "Lo slug non deve superare :max caratteri",
             'content.required' => "E' richiesta una descrizione",
             'content.max' => 'La descrizione deve avere un minimo di :min caratteri',
-            'type_id.exists' => 'La tipologia deve venire inserita'
+            'type_id.exists' => 'La tipologia deve venire inserita',
 
         ])->validate();
 
