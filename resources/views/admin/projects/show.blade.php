@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>Language used</h2>
+<h2 class="text-center">Language used: {{$project->type->name ?? 'undefined'}}</h2>
 <main class="container-fluid text-dark py-4">
   <div class="row justify-content-center">
     <div class="col-6">
