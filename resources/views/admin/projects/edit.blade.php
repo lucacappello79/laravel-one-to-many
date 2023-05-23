@@ -27,6 +27,25 @@
             </div>
 
             <div class="mb-3">
+              <label for="type_id" class="form-label">Type_id</label>
+
+              <select id="type_id" name="type_id" class="form-select @error('type_id') is-invalid @enderror">
+                <option value="">Undefined</option>
+
+                @foreach ($types as $item)
+                  <option value="{{$item->id}}" {{$item->id == old('type_id', $project->type_id) ? 'selected' : ''}}>{{$item->name}}</option>   
+                @endforeach
+
+              </select>
+
+              @error('type_id')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+
+            <div class="mb-3">
               <label for="content" class="form-label">Content</label>
               <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror" required>{{old('content')  ?? $project->content}}</textarea>
             
